@@ -1,6 +1,6 @@
 package com.mathmaurer.jeu;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.util.EventListener;
 
 public class Main {
@@ -13,24 +13,29 @@ public class Main {
 
     private STATE state = STATE.MENU;
     public static void main(String[] args){
-        JFrame fenetre = new JFrame("Jeu plateforme");
+        JFrame fenetre = new JFrame("Start menu");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(700,360);
         fenetre.setLocationRelativeTo(null);
         fenetre.setResizable(true);
         fenetre.setAlwaysOnTop(true);
 
-        /*Menu menu = new Menu();
+        Menu menu = new Menu();
         fenetre.setContentPane(menu);
         fenetre.setVisible(true);
 
         while(menu.play !=1){
             System.out.println(menu.play);
         }
-        fenetre.setVisible(false);
-        fenetre.remove(menu);*/
+        fenetre.dispose();
+        JFrame Gamewindow = new JFrame("Jeu plateforme");
+        Gamewindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Gamewindow.setSize(700,360);
+        Gamewindow.setLocationRelativeTo(null);
+        Gamewindow.setResizable(true);
+
         scene = new Scene();
-        fenetre.setContentPane(scene);
-        fenetre.setVisible(true);
+        Gamewindow.setContentPane(scene);
+        Gamewindow.setVisible(true);
     }
 }
