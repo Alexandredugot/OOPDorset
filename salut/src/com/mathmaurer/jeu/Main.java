@@ -25,7 +25,7 @@ public class Main {
         fenetre.setVisible(true);
 
         while(menu.play !=1){
-
+            System.out.print(menu.play);
         }
         fenetre.dispose();
         JFrame Gamewindow = new JFrame("Jeu plateforme");
