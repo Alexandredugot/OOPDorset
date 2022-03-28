@@ -24,6 +24,7 @@ public class Main {
         fenetre.setContentPane(menu);
         fenetre.setVisible(true);
 
+<<<<<<< Updated upstream
         while(menu.play !=1){
             System.out.print(menu.play);
         }
@@ -37,5 +38,7 @@ public class Main {
         scene = new Scene();
         Gamewindow.setContentPane(scene);
         Gamewindow.setVisible(true);
+=======
+>>>>>>> Stashed changes
     }
 }
