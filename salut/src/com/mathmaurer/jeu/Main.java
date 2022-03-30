@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.EventListener;
 
+
 public class Main {
 
     public static Scene scene;
@@ -31,15 +32,19 @@ public class Main {
 
 
 
-
+        JFrame Gamewindow = new JFrame("Jeu plateforme");
         while(menu.play !=1){
             System.out.print("");
             if(menu.play == 2){
                 device.setFullScreenWindow(fenetre);
             }
+            else if(menu.play == 3){
+                fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                fenetre.dispose();
+                System.exit(0);
+            }
         }
         fenetre.dispose();
-        JFrame Gamewindow = new JFrame("Jeu plateforme");
         Gamewindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Gamewindow.setSize(700,360);
         Gamewindow.setLocationRelativeTo(null);

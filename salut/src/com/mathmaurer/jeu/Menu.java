@@ -8,6 +8,7 @@ public class Menu extends JPanel implements ActionListener {
     public int play =0;
     public static JButton button;
     public static JButton button2;
+    public static JButton button3;
     JLabel label;
     //créer public attribut state déclarant l'état du bouton appuyé
     Menu(){
@@ -18,19 +19,27 @@ public class Menu extends JPanel implements ActionListener {
         label.setBounds(0,0,700,300);
         button = new JButton();
         button2 = new JButton();
+        button3 = new JButton();
         button.setBounds(Main.fenetre.getWidth()/2- 100,Main.fenetre.getHeight()/2-50,200,50);
         button2.setBounds(Main.fenetre.getWidth()/2- 100,Main.fenetre.getHeight()/2+100,200,50);
+        button3.setBounds(Main.fenetre.getWidth()/2- 100,Main.fenetre.getHeight()/2+200,200,50);
         this.setLayout(null);
         this.add(button);
         this.add(button2);
+        this.add(button3);
         button.addActionListener(this);
         button2.addActionListener(this);
+        button3.addActionListener(this);
         button.setText("Play");
         button2.setText("Fullscreen");
+        button3.setText("Quit game");
         button.setFocusable(false);
         button2.setFocusable(false);
+        button3.setFocusable(false);
         button2.setBackground(Color.red);
         button2.setForeground(Color.CYAN);
+        button3.setBackground(Color.red);
+        button3.setForeground(Color.CYAN);
         button.setBackground(Color.red);
         button.setForeground(Color.CYAN);
         this.setBackground(Color.ORANGE);
@@ -48,6 +57,10 @@ public class Menu extends JPanel implements ActionListener {
             play =2;
         }
 
+        if(e.getSource() == button3){
+            play = 3;
+        }
+
     }
 
     public void paintComponent(Graphics g){
@@ -58,10 +71,11 @@ public class Menu extends JPanel implements ActionListener {
         int height;
 
         width = (int)(Main.fenetre.getWidth() /3.5);
-        height = (int)(Main.fenetre.getHeight() /8.2);
+        height = (int)(Main.fenetre.getHeight() /9.2);
 
-        Menu.button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -10,width,height);
-        Menu.button2.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+100,width,height);
+        Menu.button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -85,width,height);
+        Menu.button2.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+20,width,height);
+        Menu.button3.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+125,width,height);
 
 
 
