@@ -1,8 +1,13 @@
 package com.mathmaurer.object;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class object {
    private int x,y;
    private int width,height;
+   protected Image objimg;
+   protected ImageIcon objicon;
 
    public object(int xi, int yi,int objheight, int objwidth){
        this.x=xi;
@@ -23,6 +28,8 @@ public class object {
     public int getY() {
         return y;
     }
+    public Image getObjimg() {return objimg;}
+    public ImageIcon getObjicon() {return objicon;}
 
     public void setHeight(int height) {
         this.height = height;
@@ -36,4 +43,6 @@ public class object {
     public void setY(int y) {
         this.y = y;
     }
+    public void setObjimg(Image objimg) {this.objimg = objimg;}
+    public void setObjicon(ImageIcon objicon) {this.objicon = objicon;}
 }
