@@ -12,19 +12,23 @@ public class Main {
     }
 
     private STATE state = STATE.MENU;
+    public static JFrame fenetre = new JFrame("Start menu");
+    public static Menu menu;
+
     public static void main(String[] args){
-        JFrame fenetre = new JFrame("Start menu");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(700,360);
         fenetre.setLocationRelativeTo(null);
         fenetre.setResizable(true);
         fenetre.setAlwaysOnTop(true);
 
-        Menu menu = new Menu();
+        menu = new Menu();
         fenetre.setContentPane(menu);
         fenetre.setVisible(true);
 
-<<<<<<< Updated upstream
+
+
+
         while(menu.play !=1){
             System.out.print(menu.play);
         }
@@ -38,7 +42,6 @@ public class Main {
         scene = new Scene();
         Gamewindow.setContentPane(scene);
         Gamewindow.setVisible(true);
-=======
->>>>>>> Stashed changes
+
     }
 }

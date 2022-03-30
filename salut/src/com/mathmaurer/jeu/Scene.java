@@ -100,12 +100,15 @@ public class Scene extends JPanel {
         Graphics g2 = (Graphics2D)g;
 
         this.Movefond();
+        Menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
         g2.drawImage(this.imgfond2,this.xFond2,0,null);
         g2.drawImage(this.player.MOVE("mario",30),300,245,null);
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
+
+
 
     }
 }
