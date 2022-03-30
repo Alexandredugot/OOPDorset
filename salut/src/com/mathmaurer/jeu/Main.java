@@ -30,7 +30,7 @@ public class Main {
 
 
         while(menu.play !=1){
-            System.out.print(menu.play);
+            System.out.print("");
         }
         fenetre.dispose();
         JFrame Gamewindow = new JFrame("Jeu plateforme");
