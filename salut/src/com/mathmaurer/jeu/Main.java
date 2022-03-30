@@ -1,6 +1,7 @@
 package com.mathmaurer.jeu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.EventListener;
 
 public class Main {
@@ -12,8 +13,10 @@ public class Main {
     }
 
     private STATE state = STATE.MENU;
-    public static JFrame fenetre = new JFrame("Start menu");
+    public static JFrame fenetre = new JFrame("start menu");
     public static Menu menu;
+    public static GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    public static GraphicsDevice device = graphics.getDefaultScreenDevice();
 
     public static void main(String[] args){
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +34,9 @@ public class Main {
 
         while(menu.play !=1){
             System.out.print("");
+            if(menu.play == 2){
+                device.setFullScreenWindow(fenetre);
+            }
         }
         fenetre.dispose();
         JFrame Gamewindow = new JFrame("Jeu plateforme");
