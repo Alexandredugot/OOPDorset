@@ -79,7 +79,7 @@ public class Scene extends JPanel {
         this.requestFocusInWindow();
 
         this.addKeyListener(new Clavier());
-
+/*
         blocA= new bloc(400,180);
         blocB=new bloc(1200,180);
         blocC= new bloc(1270,170);
@@ -104,7 +104,7 @@ public class Scene extends JPanel {
         this.objlist.add(this.blocI);
         this.objlist.add(this.blocJ);
         this.objlist.add(this.blocK);
-        this.objlist.add(this.blocL);
+        this.objlist.add(this.blocL);*/
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
     }
