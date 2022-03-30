@@ -11,6 +11,10 @@ public class Clavier implements KeyListener {
         {
             Main.scene.Setdx(0);
         }
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            Main.scene.SetjumpForce(0);
+        }
     }
 
     @Override
@@ -26,6 +30,10 @@ public class Clavier implements KeyListener {
             Main.scene.Setdx(-1);
             Main.scene.player.setMarche(true);
             Main.scene.player.setVersDroite(false);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            Main.scene.player.SetSaut(true);
         }
 
     }

@@ -21,10 +21,15 @@ public class Scene extends JPanel {
     private int xFond1;
     private int xFond2;
 
+    private int xPos;
+    private int ySol;
+    private int HauteurPlafond;
+
     private int xcastle;
     private int xdepart;
 
     private int dx;
+    private int jumpForce;
 
     public com.mathmaurer.personnage.Player player;
 
@@ -36,6 +41,9 @@ public class Scene extends JPanel {
         this.xFond2 = 750;
         this.xcastle = 10;
         this.xdepart = 220;
+
+        this.ySol = 293;
+        this.HauteurPlafond = 0;
 
 
         player = new Player(300,245);
@@ -70,6 +78,18 @@ public class Scene extends JPanel {
         this.dx = n;
     }
 
+    public int GetJumpForce(){return this.jumpForce;}
+
+    public void SetjumpForce(int n){this.jumpForce =n;}
+
+    public void setySol(int n){this.ySol =n;}
+
+    public void setHauteurPlafond(int n){this.HauteurPlafond = n;}
+
+    public int getySol(){return this.ySol;}
+
+    public int getHauteurPlafond(){return this.HauteurPlafond;}
+
     public void Movefond(){
 
         this.xFond1 = this.xFond1 - this.dx;
@@ -103,7 +123,10 @@ public class Scene extends JPanel {
         Menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
         g2.drawImage(this.imgfond2,this.xFond2,0,null);
-        g2.drawImage(this.player.MOVE("mario",30),300,245,null);
+
+        if(this.player.getsaut()){g2.drawImage(this.player.saute(), this.player.getX(), this.player.getY(), null);}
+        else{g2.drawImage(this.player.MOVE("mario", 25), this.player.getX(), this.player.getY(), null);}
+
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
