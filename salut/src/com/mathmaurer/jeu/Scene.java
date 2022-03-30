@@ -1,8 +1,9 @@
 package com.mathmaurer.jeu;
 import com.mathmaurer.personnage.Player;
-
+import com.mathmaurer.object.bloc;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 
@@ -33,7 +34,20 @@ public class Scene extends JPanel {
 
     public com.mathmaurer.personnage.Player player;
 
+    public bloc blocA;
+    public bloc blocB;
+    public bloc blocC;
+    public bloc blocD;
+    public bloc blocE;
+    public bloc blocF;
+    public bloc blocG;
+    public bloc blocH;
+    public bloc blocI;
+    public bloc blocJ;
+    public bloc blocK;
+    public bloc blocL;
 
+    private ArrayList<Object> objlist;
 
     public Scene(){
         super();
@@ -66,6 +80,31 @@ public class Scene extends JPanel {
 
         this.addKeyListener(new Clavier());
 
+        blocA= new bloc(400,180);
+        blocB=new bloc(1200,180);
+        blocC= new bloc(1270,170);
+        blocD = new bloc(1340,160);
+        blocE = new bloc(2000,180);
+        blocF = new bloc(2600,160);
+        blocG= new bloc(2650,180);
+        blocH= new bloc(3500,160);
+        blocI= new bloc(3550,140);
+        blocJ = new bloc(4000,200);
+        blocK= new bloc(4200,200);
+        blocL= new bloc(4300,210);
+
+        objlist = new ArrayList<Object>();
+        this.objlist.add(this.blocA);
+        this.objlist.add(this.blocB);
+        this.objlist.add(this.blocC);
+        this.objlist.add(this.blocD);
+        this.objlist.add(this.blocE);
+        this.objlist.add(this.blocF);
+        this.objlist.add(this.blocG);
+        this.objlist.add(this.blocI);
+        this.objlist.add(this.blocJ);
+        this.objlist.add(this.blocK);
+        this.objlist.add(this.blocL);
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
     }
