@@ -71,7 +71,7 @@ public class Scene extends JPanel implements ActionListener{
 
 
         player = new Player(300,245);
-
+        blocA= new bloc(400,180);
 
 
 
@@ -142,11 +142,14 @@ public class Scene extends JPanel implements ActionListener{
     public int getHauteurPlafond(){return this.HauteurPlafond;}
 
     public void Movefond(){
-
-        this.xFond1 = this.xFond1 - this.dx;
-        this.xFond2 = this.xFond2 - this.dx;
         this.xcastle = this.xcastle - this.dx;
         this.xdepart = this.xdepart - this.dx;
+        this.xFond1 = this.xFond1 - this.dx;
+        this.xFond2 = this.xFond2 - this.dx;
+        if(this.xPos>=0){
+            this.xPos+=this.dx;
+
+        }
 
         if(this.xFond1 == -800)
         {
@@ -181,6 +184,7 @@ public class Scene extends JPanel implements ActionListener{
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
+        g2.drawImage(blocA.getObjimg(),blocA.getX()-this.xPos,blocA.getY(),null);
 
         if(ispause && first == false){
             PauseMenu();
