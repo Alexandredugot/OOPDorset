@@ -10,6 +10,8 @@ public class Menu extends JPanel implements ActionListener {
     public static JButton button2;
     public static JButton button3;
     JLabel label;
+
+    public boolean ispause;
     //créer public attribut state déclarant l'état du bouton appuyé
     Menu(){
 
@@ -73,13 +75,15 @@ public class Menu extends JPanel implements ActionListener {
         width = (int)(Main.fenetre.getWidth() /3.5);
         height = (int)(Main.fenetre.getHeight() /9.2);
 
-        Menu.button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -85,width,height);
+        Menu.button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -80,width,height);
         Menu.button2.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+20,width,height);
-        Menu.button3.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+125,width,height);
+        Menu.button3.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+120,width,height);
 
 
 
     }
+
+
 
 
 }

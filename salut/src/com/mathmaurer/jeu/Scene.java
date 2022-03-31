@@ -1,14 +1,16 @@
 package com.mathmaurer.jeu;
 import com.mathmaurer.personnage.Player;
 import com.mathmaurer.object.bloc;
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 
 @SuppressWarnings("serial")
-public class Scene extends JPanel {
+public class Scene extends JPanel implements ActionListener{
 
     private ImageIcon icoFond;
     private Image imgfond1;
@@ -47,10 +49,18 @@ public class Scene extends JPanel {
     public bloc blocK;
     public bloc blocL;
 
+
+    public JButton button;
+    public boolean ispause;
+    public boolean notpause;
+    public boolean first;
+
     private ArrayList<Object> objlist;
 
     public Scene(){
         super();
+        ispause = false;
+        first = false;
         this.xFond1 = -50;
         this.xFond2 = 750;
         this.xcastle = 10;
@@ -61,6 +71,8 @@ public class Scene extends JPanel {
 
 
         player = new Player(300,245);
+
+
 
 
         this.dx = 0;
@@ -170,7 +182,35 @@ public class Scene extends JPanel {
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
 
+        if(ispause && first == false){
+            PauseMenu();
+            first = true;
+            notpause = false;
+        }
+        else if(notpause && first){
+            first =false;
+        }
 
 
+
+
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+
+
+    }
+
+    public void PauseMenu() {
+        button = new JButton();
+        button.setBounds(Main.fenetre.getWidth()/2- 100,Main.fenetre.getHeight()/2+400,200,50);
+        this.add(button);
+        button.addActionListener(this);
+        button.setText("Return Menu");
+        button.setFocusable(false);
+        button.setBackground(Color.red);
+        button.setForeground(Color.CYAN);
     }
 }

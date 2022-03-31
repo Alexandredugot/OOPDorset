@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Clavier implements KeyListener {
-
+    public boolean g = true;
     @Override
     public void keyTyped(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -34,6 +34,16 @@ public class Clavier implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_SPACE)
         {
             Main.scene.player.SetSaut(true);
+        }
+        if(Main.isgame && e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            Main.scene.ispause = true;
+            g =false;
+        }
+        else if(g==false && e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            Main.scene.ispause = false;
+            Main.scene.notpause = true;
         }
 
     }

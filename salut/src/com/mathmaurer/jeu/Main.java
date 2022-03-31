@@ -18,6 +18,7 @@ public class Main {
     public static Menu menu;
     public static GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
     public static GraphicsDevice device = graphics.getDefaultScreenDevice();
+    public static boolean isgame = false;
 
     public static void main(String[] args){
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +36,11 @@ public class Main {
         JFrame Gamewindow = new JFrame("Jeu plateforme");
         while(menu.play !=1){
             System.out.print("");
-            if(menu.play == 2){
+
+            if(menu.play == 1){
+                isgame = true;
+            }
+            else if(menu.play == 2){
                 device.setFullScreenWindow(fenetre);
             }
             else if(menu.play == 3){
