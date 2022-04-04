@@ -35,7 +35,7 @@ public class Clavier implements KeyListener {
         {
             Main.scene.player.SetSaut(true);
         }
-        if(Main.isgame && e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        if(Main.isgame && e.getKeyCode() == KeyEvent.VK_ESCAPE && g)
         {
             Main.scene.ispause = true;
             g =false;
@@ -44,6 +44,7 @@ public class Clavier implements KeyListener {
         {
             Main.scene.ispause = false;
             Main.scene.notpause = true;
+            g = true;
         }
 
     }

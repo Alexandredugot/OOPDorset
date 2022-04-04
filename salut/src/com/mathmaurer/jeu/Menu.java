@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class Menu extends JPanel implements ActionListener {
     public int play =0;
-    public static JButton button;
-    public static JButton button2;
-    public static JButton button3;
+    public JButton button;
+    public JButton button2;
+    public JButton button3;
     JLabel label;
 
     public boolean ispause;
@@ -52,6 +52,7 @@ public class Menu extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==button){
             play=1;
+            Main.isgame = true;
         }
 
         if(e.getSource() == button2)
@@ -75,9 +76,9 @@ public class Menu extends JPanel implements ActionListener {
         width = (int)(Main.fenetre.getWidth() /3.5);
         height = (int)(Main.fenetre.getHeight() /9.2);
 
-        Menu.button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -80,width,height);
-        Menu.button2.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+20,width,height);
-        Menu.button3.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+120,width,height);
+        button.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height -80,width,height);
+        button2.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+20,width,height);
+        button3.setBounds(Main.fenetre.getWidth()/2 -width/2,Main.fenetre.getHeight()/2 -height+120,width,height);
 
 
 

@@ -27,6 +27,7 @@ public class Scene extends JPanel implements ActionListener{
     private int xPos;
     private int ySol;
     private int HauteurPlafond;
+    private int xCube;
 
     private int xcastle;
     private int xdepart;
@@ -65,6 +66,8 @@ public class Scene extends JPanel implements ActionListener{
         this.xFond2 = 750;
         this.xcastle = 10;
         this.xdepart = 220;
+        this.xCube = 400;
+
 
         this.ySol = 293;
         this.HauteurPlafond = 0;
@@ -72,6 +75,11 @@ public class Scene extends JPanel implements ActionListener{
 
         player = new Player(300,245);
         blocA= new bloc(400,180);
+        blocB=new bloc(1200,180);
+        blocC= new bloc(1270,170);
+        blocD = new bloc(1340,160);
+        blocE = new bloc(2000,180);
+        bloc grg = new bloc(100,150);
 
 
 
@@ -146,10 +154,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xdepart = this.xdepart - this.dx;
         this.xFond1 = this.xFond1 - this.dx;
         this.xFond2 = this.xFond2 - this.dx;
-        if(this.xPos>=0){
-            this.xPos+=this.dx;
 
-        }
 
         if(this.xFond1 == -800)
         {
@@ -174,7 +179,7 @@ public class Scene extends JPanel implements ActionListener{
         Graphics g2 = (Graphics2D)g;
 
         this.Movefond();
-        Menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
+        Main.menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
         g2.drawImage(this.imgfond2,this.xFond2,0,null);
 
@@ -184,7 +189,13 @@ public class Scene extends JPanel implements ActionListener{
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
-        g2.drawImage(blocA.getObjimg(),blocA.getX()-this.xPos,blocA.getY(),null);
+
+        for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
+            com.mathmaurer.object.object.list.get(i).MoveOject(i);
+            g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
+        }
+
+
 
         if(ispause && first == false){
             PauseMenu();
@@ -193,6 +204,8 @@ public class Scene extends JPanel implements ActionListener{
         }
         else if(notpause && first){
             first =false;
+            ispause =  false;
+            Unpause();
         }
 
 
@@ -203,18 +216,25 @@ public class Scene extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-
+        if(e.getSource()==button){
+            System.exit(0);
+        }
 
     }
 
     public void PauseMenu() {
         button = new JButton();
-        button.setBounds(Main.fenetre.getWidth()/2- 100,Main.fenetre.getHeight()/2+400,200,50);
+        button.setBounds(100,300,200,50);
         this.add(button);
         button.addActionListener(this);
-        button.setText("Return Menu");
+        button.setText("Quit");
         button.setFocusable(false);
         button.setBackground(Color.red);
         button.setForeground(Color.CYAN);
+    }
+
+    public void Unpause(){
+        button.remove(button);
+        button.setVisible(false);
     }
 }
