@@ -2,7 +2,7 @@ package com.mathmaurer.personnage;
 
 import java.awt.*;
 import javax.swing.ImageIcon;
-
+import com.mathmaurer.object.object;
 public class personnage {
 
     private int width;
@@ -107,6 +107,13 @@ public class personnage {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public boolean Frontcontact(object objet){
+        if(this.x+this.width< objet.getX()||this.x+this.width> objet.getX()+objet.getWidth()|| this.y+this.height<= objet.getHeight()){
+            return false;
+        }
+        return true;
     }
 
     public Image MOVE(String nom, int frequence){
