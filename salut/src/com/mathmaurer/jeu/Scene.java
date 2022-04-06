@@ -1,5 +1,6 @@
 package com.mathmaurer.jeu;
 import com.mathmaurer.object.Coin;
+import com.mathmaurer.object.Pipe;
 import com.mathmaurer.personnage.Player;
 import com.mathmaurer.object.bloc;
 import java.awt.event.ActionEvent;
@@ -71,6 +72,15 @@ public class Scene extends JPanel implements ActionListener{
    private ArrayList<Coin> CoinArr= new ArrayList<Coin>();
 
 
+    public Pipe redpipe1 = new Pipe(600,230);
+    public Pipe redpipe2 = new Pipe(1000,230);
+    public Pipe redpipe3 = new Pipe(1600,230);
+    public Pipe redpipe4 = new Pipe(1900,230);
+    public Pipe redpipe5 = new Pipe(2500,230);
+    public Pipe redpipe6 = new Pipe(3000,230);
+    public Pipe redpipe7 = new Pipe(3800,230);
+    public Pipe redpipe8 = new Pipe(4500,230);
+
     public Scene(){
         super();
         ispause = false;
@@ -93,6 +103,7 @@ public class Scene extends JPanel implements ActionListener{
         blocD = new bloc(1340,160);
         blocE = new bloc(2000,180);
         bloc grg = new bloc(100,150);
+
 
 
 
@@ -218,10 +229,10 @@ public class Scene extends JPanel implements ActionListener{
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             com.mathmaurer.object.object.list.get(i).MoveOject(i);
             g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
-        }
+        }/*
         for(int i=0;i<this.CoinArr.size();i++){
-            g2.drawImage(this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
-        }
+            g2.drawImage( this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
+        }*/
 
 
 
