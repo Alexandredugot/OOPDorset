@@ -1,8 +1,10 @@
 package com.mathmaurer.jeu;
+import com.mathmaurer.object.Coin;
 import com.mathmaurer.personnage.Player;
 import com.mathmaurer.object.bloc;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.mathmaurer.object.object;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,14 +51,25 @@ public class Scene extends JPanel implements ActionListener{
     public bloc blocJ;
     public bloc blocK;
     public bloc blocL;
-
+    private ArrayList<Object> objlist;
 
     public JButton button;
     public boolean ispause;
     public boolean notpause;
     public boolean first;
 
-    private ArrayList<Object> objlist;
+    public Coin coinA = new Coin(402,145);
+   public Coin coinB = new Coin(1202,140);
+   public Coin coinC = new Coin(1272,95);
+   public Coin coinD = new Coin(1342,40);
+   public Coin coinE = new Coin(1650,145);
+   public Coin coinF = new Coin(2650, 145);
+   public Coin coinG = new Coin(3000,135);
+   public Coin coinH = new Coin(3400,125);
+   public Coin coinI = new Coin(4200,145);
+   public Coin coinJ = new Coin(4600,40);
+   private ArrayList<object> CoinArr= new ArrayList<object>();
+
 
     public Scene(){
         super();
@@ -99,6 +112,17 @@ public class Scene extends JPanel implements ActionListener{
         this.requestFocusInWindow();
 
         this.addKeyListener(new Clavier());
+
+        this.CoinArr.add(this.coinA);
+        this.CoinArr.add(coinB);
+        this.CoinArr.add(coinC);
+        this.CoinArr.add(coinD);
+        this.CoinArr.add(coinE);
+        this.CoinArr.add(coinF);
+        this.CoinArr.add(coinG);
+        this.CoinArr.add(coinH);
+        this.CoinArr.add(coinI);
+        this.CoinArr.add(coinJ);
 /*
         blocA= new bloc(400,180);
         blocB=new bloc(1200,180);
@@ -178,6 +202,7 @@ public class Scene extends JPanel implements ActionListener{
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
+
         this.Movefond();
         Main.menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
@@ -193,7 +218,11 @@ public class Scene extends JPanel implements ActionListener{
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             com.mathmaurer.object.object.list.get(i).MoveOject(i);
             g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
-        }
+        }/*
+        for(int i=0;i<this.CoinArr.size();i++){
+            this.CoinArr.get(i).MoveOject(i);
+            g2.drawImage( this.CoinArr.get(i).getObjimg(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
+        }*/
 
 
 
