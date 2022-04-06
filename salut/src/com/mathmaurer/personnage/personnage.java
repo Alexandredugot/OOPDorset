@@ -116,6 +116,20 @@ public class personnage {
         return true;
     }
 
+    public boolean Backcontact(object objet){
+        if(this.x>objet.getX()+objet.getWidth() || this.x+this.width<objet.getX()+ objet.getWidth()|| this.y+this.height<= objet.getY()|| this.y>= objet.getY()+ objet.getHeight()){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean Topcontact(object objet){
+        if(this.x+this.width<objet.getX()+objet.getWidth()||this.x>objet.getX()+ objet.getWidth()-5||this.y<objet.getY()+objet.getHeight()||this.y> objet.getHeight()+5+objet.getY()){
+            return false;
+        }
+        return true;
+    }
+
     public Image MOVE(String nom, int frequence){
         String str;
         ImageIcon ico;

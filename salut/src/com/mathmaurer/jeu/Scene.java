@@ -68,7 +68,7 @@ public class Scene extends JPanel implements ActionListener{
    public Coin coinH = new Coin(3400,125);
    public Coin coinI = new Coin(4200,145);
    public Coin coinJ = new Coin(4600,40);
-   private ArrayList<object> CoinArr= new ArrayList<object>();
+   private ArrayList<Coin> CoinArr= new ArrayList<Coin>();
 
 
     public Scene(){
@@ -218,11 +218,10 @@ public class Scene extends JPanel implements ActionListener{
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             com.mathmaurer.object.object.list.get(i).MoveOject(i);
             g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
-        }/*
+        }
         for(int i=0;i<this.CoinArr.size();i++){
-            this.CoinArr.get(i).MoveOject(i);
-            g2.drawImage( this.CoinArr.get(i).getObjimg(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
-        }*/
+            g2.drawImage(this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
+        }
 
 
 
