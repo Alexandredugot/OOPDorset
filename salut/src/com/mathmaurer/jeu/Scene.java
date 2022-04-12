@@ -274,6 +274,7 @@ public class Scene extends JPanel implements ActionListener{
             Font f = new Font("Agency FB",Font.BOLD,35);
             g.setFont(f);
             g.drawString(death,Main.scene.getWidth()/2 -170  ,Main.scene.getHeight()/2 -100);
+
         }
     }
 
@@ -284,6 +285,12 @@ public class Scene extends JPanel implements ActionListener{
         }
         else if(e.getSource()==deathquit){
             System.exit(0);
+        }
+        else if(e.getSource()==reload){
+            Scene.player.life = 100;
+            dead =true;
+            deathquit.setVisible(false);
+            reload.setVisible(false);
         }
 
     }
@@ -316,6 +323,9 @@ public class Scene extends JPanel implements ActionListener{
         g.fillPolygon(p);
         g.drawPolygon(p);
         g.setColor(Color.red);
+        Font f = new Font("Agency FB",Font.BOLD,25);
+        g.setFont(f);
+        g.drawString("LP",20,38);
     }
 
     public void KillScreen(Graphics g){
