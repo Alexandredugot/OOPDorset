@@ -1,4 +1,6 @@
 package com.mathmaurer.personnage;
+import com.mathmaurer.jeu.Main;
+import com.mathmaurer.object.object;
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.ImageIcon;
@@ -66,5 +68,23 @@ public class Player extends personnage {
         ico = new ImageIcon(getClass().getResource(str));
         img = ico.getImage();
         return img;
+    }
+
+    public void contact(object objet) {
+        if((super.Frontcontact(objet) && this.isVersDroite()) || (super.Backcontact(objet) && this.isVersDroite() == false)){
+            Main.scene.Setdx(0);
+            this.setMarche(false);
+        }
+        if(super.Botcontact(objet)&& this.saut){
+            Main.scene.setySol(objet.getY());
+        }else if(super.Botcontact(objet) == false){
+            Main.scene.setySol(293);
+            if(this.saut == false){this.setY(243);}
+        }
+        if(super.Topcontact(objet)){
+            Main.scene.setHauteurPlafond(objet.getY() + objet.getHeight());
+        }else if(super.Topcontact(objet) == false && this.saut == false){
+            Main.scene.setHauteurPlafond(0);
+        }
     }
 }

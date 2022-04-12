@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 public class Pipe extends object{
 
     public Pipe(int x, int y){
-        super(x,y,43,65);
+        super(x,y,43,43);
         super.objicon=new ImageIcon(getClass().getResource("/image/tuyauRouge.png"));
         super.objimg=this.getObjicon().getImage();
     }

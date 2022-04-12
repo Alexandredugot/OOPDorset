@@ -109,30 +109,36 @@ public class personnage {
         this.y = y;
     }
 
-    /*public boolean Frontcontact(object objet){
-        if(this.isVersDroite()){
-            if(this.x+this.width< objet.getX()||this.x+this.width> objet.getX()+objet.getWidth()|| this.y+this.height<= objet.getHeight()){
-                return false;
-            }
-            return true;
-        }
-        return false;
+    public boolean Frontcontact(object objet){
+        if(this.isVersDroite() == true){
+            if(this.x + this.width < objet.getX() || this.x + this.width > objet.getX() + 5 || this.y + this.height <= objet.getY() || this.y >= objet.getY() + objet.getHeight()){return false;}
+            else{return true;}
+        }else{return false;}
     }
 
     public boolean Backcontact(object objet){
-        if(this.x>objet.getX()+objet.getWidth() || this.x+this.width<objet.getX()+ objet.getWidth()|| this.y+this.height<= objet.getY()|| this.y>= objet.getY()+ objet.getHeight()){
-            return false;
-        }
+        if(this.x > objet.getX() + objet.getWidth() || this.x + this.width < objet.getX() + objet.getWidth() - 5 || this.y + this.height <= objet.getY() || this.y >= objet.getY() + objet.getHeight()){return false;}
         return true;
     }
 
 
     public boolean Topcontact(object objet){
-        if(this.x+this.width<objet.getX()+objet.getWidth()||this.x>objet.getX()+ objet.getWidth()-5||this.y<objet.getY()+objet.getHeight()||this.y> objet.getHeight()+5+objet.getY()){
+        if(this.x + this.width < objet.getX() + 5 || this.x > objet.getX() + objet.getWidth() - 5 || this.y < objet.getY() + objet.getHeight() || this.y > objet.getY() + objet.getHeight() + 5){
             return false;
         }
         return true;
-    }*/
+    }
+
+    public boolean Botcontact(object objet){
+        if(this.x + this.width < objet.getX() + 5 || this.x > objet.getX() + objet.getWidth() - 5 || this.y + this.height < objet.getY() || this.y + this.height > objet.getY() + 5){return false;}
+        return true;
+    }
+
+    public boolean close(object objet){
+        if((this.x > objet.getX() - 10 && this.x < objet.getX() + objet.getWidth() + 10)
+                || (this.x + this.width > objet.getX() - 10 && this.x + this.width < objet.getX() + objet.getWidth() + 10)){return true;}
+        else{return false;}
+    }
 
     public Image MOVE(String nom, int frequence){
         String str;
