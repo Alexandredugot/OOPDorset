@@ -88,6 +88,10 @@ public class Scene extends JPanel implements ActionListener{
     public static boolean life;
     public static int damage = 0;
     public boolean a;
+    public boolean dead = true;
+
+    public JButton deathquit;
+    public JButton reload;
 
     public Scene(){
         super();
@@ -259,14 +263,26 @@ public class Scene extends JPanel implements ActionListener{
             Unpause();
         }
         SetLifeBar(g,damage);
-        if(player.life == 0){
+        if(player.life == 0 && dead){
             KillScreen(g);
+            dead = false;
+        }
+        if(dead == false)
+        {
+            deathquit.setBounds(280,180,100,50);
+            reload.setBounds(280,100,100,50);
+            Font f = new Font("Agency FB",Font.BOLD,35);
+            g.setFont(f);
+            g.drawString(death,Main.scene.getWidth()/2 -170  ,Main.scene.getHeight()/2 -100);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==button){
+            System.exit(0);
+        }
+        else if(e.getSource()==deathquit){
             System.exit(0);
         }
 
@@ -291,23 +307,33 @@ public class Scene extends JPanel implements ActionListener{
     public void SetLifeBar(Graphics g,int damage){
         p = new Polygon();
 
-
-        p.addPoint(20, 40);
-        p.addPoint(Scene.player.life-damage, 40);
-        p.addPoint(Scene.player.life-damage, 20);
-        p.addPoint(20, 20);
+        p.addPoint(50, 40);
+        p.addPoint(Scene.player.life+50, 40);
+        p.addPoint(Scene.player.life+50, 20);
+        p.addPoint(50, 20);
 
         g.setColor(Color.red);
         g.fillPolygon(p);
         g.drawPolygon(p);
         g.setColor(Color.red);
-
     }
 
     public void KillScreen(Graphics g){
-        Font f = new Font("Agency FB",Font.BOLD,25);
-        g.setFont(f);
-        g.drawString(death,Main.scene.getWidth()/2 -100 ,Main.scene.getHeight()/2);
+        deathquit = new JButton();
+        reload = new JButton();
+        this.add(deathquit);
+        this.add(reload);
+        reload.addActionListener(this);
+        deathquit.addActionListener(this);
+        deathquit.setText("RageQuit");
+        reload.setText("Reload");
+        deathquit.setFocusable(false);
+        reload.setFocusable(false);
+        deathquit.setBackground(Color.red);
+        deathquit.setForeground(Color.CYAN);
+        reload.setBackground(Color.red);
+        reload.setForeground(Color.CYAN);
+
     }
 
 

@@ -54,7 +54,6 @@ public class Clavier implements KeyListener {
 
             if(Scene.player.life>=10)
             {
-                Scene.damage = Scene.damage+10;
                 Scene.player.life -=10;
             }
         }
