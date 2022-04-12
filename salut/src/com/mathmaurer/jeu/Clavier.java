@@ -7,44 +7,56 @@ public class Clavier implements KeyListener {
     public boolean g = true;
     @Override
     public void keyTyped(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_LEFT)
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_LEFT && Scene.player.life>0)
         {
             Main.scene.Setdx(0);
         }
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+        if(e.getKeyCode() == KeyEvent.VK_SPACE && Scene.player.life>0)
         {
             Main.scene.SetjumpForce(0);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_L && Scene.player.life>0){
+            Scene.life = true;
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT && Scene.player.life>0)
         {
             Main.scene.Setdx(1);
             Main.scene.player.setMarche(true);
             Main.scene.player.setVersDroite(true);
         }
-        else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT && Scene.player.life>0)
         {
             Main.scene.Setdx(-1);
             Main.scene.player.setMarche(true);
             Main.scene.player.setVersDroite(false);
         }
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+        if(e.getKeyCode() == KeyEvent.VK_SPACE && Scene.player.life>0)
         {
             Main.scene.player.SetSaut(true);
         }
-        if(Main.isgame && e.getKeyCode() == KeyEvent.VK_ESCAPE && g)
+        if(Main.isgame && e.getKeyCode() == KeyEvent.VK_ESCAPE && g && Scene.player.life>0)
         {
             Main.scene.ispause = true;
             g =false;
         }
-        else if(g==false && e.getKeyCode() == KeyEvent.VK_ESCAPE)
+        else if(g==false && e.getKeyCode() == KeyEvent.VK_ESCAPE && Scene.player.life>0)
         {
             Main.scene.ispause = false;
             Main.scene.notpause = true;
             g = true;
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_L){
+
+            if(Scene.player.life>=10)
+            {
+                Scene.damage = Scene.damage+10;
+                Scene.player.life -=10;
+            }
         }
 
     }

@@ -9,6 +9,7 @@ import com.mathmaurer.object.object;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 
@@ -38,7 +39,7 @@ public class Scene extends JPanel implements ActionListener{
     private int dx;
     private int jumpForce;
 
-    public com.mathmaurer.personnage.Player player;
+    public static com.mathmaurer.personnage.Player player;
 
     public bloc blocA;
     public bloc blocB;
@@ -81,8 +82,18 @@ public class Scene extends JPanel implements ActionListener{
     public Pipe redpipe7 = new Pipe(3800,230);
     public Pipe redpipe8 = new Pipe(4500,230);
 
+    Polygon p = new Polygon();
+    String death = new String();
+
+    public static boolean life;
+    public static int damage = 0;
+    public boolean a;
+
     public Scene(){
         super();
+        death = "Only losers see this screen!";
+        a=true;
+        life = false;
         ispause = false;
         first = false;
         this.xFond1 = -50;
@@ -209,6 +220,7 @@ public class Scene extends JPanel implements ActionListener{
         }
     }
 
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
@@ -246,11 +258,10 @@ public class Scene extends JPanel implements ActionListener{
             ispause =  false;
             Unpause();
         }
-
-
-
-
-
+        SetLifeBar(g,damage);
+        if(player.life == 0){
+            KillScreen(g);
+        }
     }
 
     @Override
@@ -276,4 +287,30 @@ public class Scene extends JPanel implements ActionListener{
         button.remove(button);
         button.setVisible(false);
     }
+
+    public void SetLifeBar(Graphics g,int damage){
+        p = new Polygon();
+
+
+        p.addPoint(20, 40);
+        p.addPoint(Scene.player.life-damage, 40);
+        p.addPoint(Scene.player.life-damage, 20);
+        p.addPoint(20, 20);
+
+        g.setColor(Color.red);
+        g.fillPolygon(p);
+        g.drawPolygon(p);
+        g.setColor(Color.red);
+
+    }
+
+    public void KillScreen(Graphics g){
+        Font f = new Font("Agency FB",Font.BOLD,25);
+        g.setFont(f);
+        g.drawString(death,Main.scene.getWidth()/2 -100 ,Main.scene.getHeight()/2);
+    }
+
+
+
+
 }
