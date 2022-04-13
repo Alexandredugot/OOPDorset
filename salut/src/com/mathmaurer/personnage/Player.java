@@ -1,6 +1,7 @@
 package com.mathmaurer.personnage;
 import com.mathmaurer.jeu.Main;
 import com.mathmaurer.object.object;
+import com.mathmaurer.object.Coin;
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.ImageIcon;
@@ -12,6 +13,7 @@ public class Player extends personnage {
 
     private boolean saut;
     private int compteurSaut;
+    public int coincount;
 
     public Player(int x,int y){
         super(x,y,28,50,100,10,3);
@@ -20,6 +22,7 @@ public class Player extends personnage {
 
         this.saut = false;
         this.compteurSaut =0;
+        this.coincount=0;
     }
 
     public Image getImgPlayer(){return imgPlayer;}
@@ -86,5 +89,13 @@ public class Player extends personnage {
         }else if(super.Topcontact(objet) == false && this.saut == false){
             Main.scene.setHauteurPlafond(0);
         }
+    }
+
+    public boolean contactcoin(object coin){
+        if(this.Backcontact(coin)||this.Topcontact(coin)||this.Frontcontact(coin)||this.Botcontact(coin)){
+            this.coincount+=1;
+            return true;
+        }
+        return false;
     }
 }

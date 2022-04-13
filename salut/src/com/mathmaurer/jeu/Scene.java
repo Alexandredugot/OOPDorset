@@ -243,8 +243,25 @@ public class Scene extends JPanel implements ActionListener{
         g2.drawImage(imgDepart,xdepart,234,null);
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
-            com.mathmaurer.object.object.list.get(i).MoveOject(i);
+            object objet= com.mathmaurer.object.object.list.get(i);
+            objet.MoveOject(i);
+            g2.drawImage(objet.getObjimg(), objet.getX(), objet.getY(), null);
+            if(player.close(objet)){
+                if(objet.getClass()!=Coin.class){
+                    player.contact(objet);
+                }
+                else{
+                    if(player.contactcoin(objet)){
+                        com.mathmaurer.object.object.list.remove(i);
+                        System.out.print(this.player.coincount);
+                    }
+
+                }
+
+            }
+            /*com.mathmaurer.object.object.list.get(i).MoveOject(i);
             g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
+            if(player.close(object))*/
         }/*
         for(int i=0;i<this.CoinArr.size();i++){
             g2.drawImage( this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
