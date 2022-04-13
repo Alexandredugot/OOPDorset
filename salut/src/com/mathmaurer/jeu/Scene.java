@@ -253,7 +253,6 @@ public class Scene extends JPanel implements ActionListener{
                 else{
                     if(player.contactcoin(objet)){
                         com.mathmaurer.object.object.list.remove(i);
-                        System.out.print(this.player.coincount);
                     }
 
                 }
