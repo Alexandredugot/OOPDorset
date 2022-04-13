@@ -229,7 +229,20 @@ public class Scene extends JPanel implements ActionListener{
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
+        for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
+            object objet= com.mathmaurer.object.object.list.get(i);
+            if(player.close(objet)){
 
+                if(objet.getClass()!=Coin.class){
+                    player.contact(objet);
+                }
+                else{
+                    if(player.contactcoin(objet)){
+                        com.mathmaurer.object.object.list.remove(i);
+                    }
+                }
+            }
+        }
         this.Movefond();
         Main.menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
@@ -243,6 +256,9 @@ public class Scene extends JPanel implements ActionListener{
         g2.drawImage(imgDepart,xdepart,234,null);
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
+
+
+
             object objet= com.mathmaurer.object.object.list.get(i);
             objet.MoveOject(i);
             g2.drawImage(objet.getObjimg(), objet.getX(), objet.getY(), null);
@@ -253,21 +269,7 @@ public class Scene extends JPanel implements ActionListener{
             g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
             if(player.close(object))*/
         }
-        for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
-            object objet= com.mathmaurer.object.object.list.get(i);
-            if(player.close(objet)){
-
-                if(objet.getClass()!=Coin.class){
-                    player.contact(objet);
-                }
-                else{
-                    if(player.contactcoin(objet)){
-                        com.mathmaurer.object.object.list.remove(i);
-                    }
-
-                }
-            }
-        }/*
+        /*
         for(int i=0;i<this.CoinArr.size();i++){
             g2.drawImage( this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
         }*/
