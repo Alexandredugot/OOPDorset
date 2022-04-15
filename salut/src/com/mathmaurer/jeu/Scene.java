@@ -6,6 +6,7 @@ import com.mathmaurer.object.bloc;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.mathmaurer.object.object;
+import com.mathmaurer.personnage.stonks;
 
 import javax.swing.*;
 import java.awt.*;
@@ -292,6 +293,11 @@ public class Scene extends JPanel implements ActionListener{
             g.drawString(death,Main.scene.getWidth()/2 -170  ,Main.scene.getHeight()/2 -100);
 
         }
+
+        com.mathmaurer.personnage.stonks monster = new stonks(400,245);
+        monster.MOVE(20,30);
+        g2.drawImage(monster.imgMonster,monster.x,245,null);
+
     }
 
     @Override
