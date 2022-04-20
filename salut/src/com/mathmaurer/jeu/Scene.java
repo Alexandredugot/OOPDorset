@@ -94,8 +94,11 @@ public class Scene extends JPanel implements ActionListener{
     public JButton deathquit;
     public JButton reload;
 
+    public com.mathmaurer.personnage.stonks monster;
+
     public Scene(){
         super();
+
         death = "Only losers see this screen!";
         a=true;
         life = false;
@@ -176,6 +179,8 @@ public class Scene extends JPanel implements ActionListener{
         this.objlist.add(this.blocJ);
         this.objlist.add(this.blocK);
         this.objlist.add(this.blocL);*/
+        Thread a = new Thread(monster = new stonks(400,264));
+        a.start();
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
     }
@@ -205,6 +210,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xdepart = this.xdepart - this.dx;
         this.xFond1 = this.xFond1 - this.dx;
         this.xFond2 = this.xFond2 - this.dx;
+        this.monster.x = this.monster.x -this.dx;
 
 
         if(this.xFond1 == -800)
@@ -302,9 +308,10 @@ public class Scene extends JPanel implements ActionListener{
 
         }
 
-        com.mathmaurer.personnage.stonks monster = new stonks(400,245);
-        monster.MOVE(20,30);
-        g2.drawImage(monster.imgMonster,monster.x,245,null);
+        g.drawImage(monster.imgMonster,monster.x,this.monster.y,null);
+
+
+
 
     }
 

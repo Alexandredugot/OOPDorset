@@ -1,9 +1,12 @@
 package com.mathmaurer.personnage;
 
+import com.mathmaurer.jeu.Main;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.*;
 
-public class stonks extends personnage {
+public class stonks extends personnage implements Runnable {
 
     public int x;
     public int y;
@@ -13,6 +16,40 @@ public class stonks extends personnage {
     public ImageIcon icoMonster;
 
     public boolean droite;
+
+    public void run(){
+        while(this.life >0){
+            int compteur = 70;
+            this.icoMonster = new ImageIcon("src/Image/champArretDroite.png");
+            this.imgMonster = this.icoMonster.getImage();
+            while(compteur>0)
+            {
+                this.MOVE(2);
+                compteur--;
+                try{
+                    Thread.sleep(50);
+                }catch(InterruptedException e){
+
+                }
+            }
+            this.icoMonster = new ImageIcon("src/Image/champArretGauche.png");
+            this.imgMonster = this.icoMonster.getImage();
+            compteur = 70;
+            while(compteur>0)
+            {
+                this.MOVE(-2);
+                compteur--;
+                try{
+                    Thread.sleep(50);
+                }catch(InterruptedException e){
+
+                }
+            }
+        }
+
+
+
+    }
 
     public stonks(int x,int y)
     {
@@ -30,16 +67,8 @@ public class stonks extends personnage {
     }
 
 
-    public void MOVE(int R,float frequence){
-        while(frequence!=0){
-            frequence-=0.001;
-            this.x += com.mathmaurer.jeu.Main.scene.Getdx() +1;
-        }
-        frequence = 30;
-        while(frequence!=0){
-            frequence-=0.001;
-            this.x += com.mathmaurer.jeu.Main.scene.Getdx() -1;
-        }
+    public void MOVE(int direction){
+        this.x += direction;
     }
 
 
