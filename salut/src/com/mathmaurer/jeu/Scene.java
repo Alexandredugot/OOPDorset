@@ -296,6 +296,7 @@ public class Scene extends JPanel implements ActionListener{
             ispause =  false;
             Unpause();
         }
+
         SetLifeBar(g,damage);
         if(player.life == 0 && dead){
             KillScreen(g);
@@ -354,7 +355,8 @@ public class Scene extends JPanel implements ActionListener{
 
     public void SetLifeBar(Graphics g,int damage){
         p = new Polygon();
-
+        if(player.life<= 0)
+            player.life =0;
         p.addPoint(50, 40);
         p.addPoint(Main.scene.player.life+50, 40);
         p.addPoint(Main.scene.player.life+50, 20);
@@ -393,7 +395,7 @@ public class Scene extends JPanel implements ActionListener{
         Image b =a.getImage();
         Font f = new Font("Agency FB",Font.BOLD,25);
         g.setFont(f);
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         g.drawString(""+Main.scene.player.coincount,610,29);
         g.drawImage(b,630,5,null);
 

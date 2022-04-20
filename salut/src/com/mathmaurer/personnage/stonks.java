@@ -31,7 +31,7 @@ public class stonks extends personnage implements Runnable {
                 this.MOVE(2);
                 compteur--;
                 try{
-                    Thread.sleep(50);
+                    Thread.sleep(40);
                 }catch(InterruptedException e){
 
                 }
@@ -45,7 +45,7 @@ public class stonks extends personnage implements Runnable {
                 this.MOVE(-2);
                 compteur--;
                 try{
-                    Thread.sleep(50);
+                    Thread.sleep(40);
                 }catch(InterruptedException e){
 
                 }
@@ -87,7 +87,7 @@ public class stonks extends personnage implements Runnable {
             {
                 if(list.get(i).x <= Main.scene.player.getX()+8 && list.get(i).x>= Main.scene.player.getX()-8 )
                 {
-                    Main.scene.player.life -= 10;
+                    Main.scene.player.life -= 5;
                 }
             }
         }
