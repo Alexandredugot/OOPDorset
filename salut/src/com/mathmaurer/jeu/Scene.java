@@ -6,6 +6,7 @@ import com.mathmaurer.object.bloc;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.mathmaurer.object.object;
+import com.mathmaurer.personnage.damage;
 import com.mathmaurer.personnage.stonks;
 
 import javax.swing.*;
@@ -40,7 +41,7 @@ public class Scene extends JPanel implements ActionListener{
     private int dx;
     private int jumpForce;
 
-    public static com.mathmaurer.personnage.Player player;
+    public com.mathmaurer.personnage.Player player;
 
     public bloc blocA;
     public bloc blocB;
@@ -181,6 +182,8 @@ public class Scene extends JPanel implements ActionListener{
         this.objlist.add(this.blocL);*/
         Thread a = new Thread(monster = new stonks(400,264));
         a.start();
+        Thread b = new Thread(new damage());
+        b.start();
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
     }
@@ -313,6 +316,7 @@ public class Scene extends JPanel implements ActionListener{
 
 
 
+
     }
 
     @Override
@@ -324,7 +328,7 @@ public class Scene extends JPanel implements ActionListener{
             System.exit(0);
         }
         else if(e.getSource()==reload){
-            Scene.player.life = 100;
+            Main.scene.player.life = 100;
             dead =true;
             deathquit.setVisible(false);
             reload.setVisible(false);
@@ -352,8 +356,8 @@ public class Scene extends JPanel implements ActionListener{
         p = new Polygon();
 
         p.addPoint(50, 40);
-        p.addPoint(Scene.player.life+50, 40);
-        p.addPoint(Scene.player.life+50, 20);
+        p.addPoint(Main.scene.player.life+50, 40);
+        p.addPoint(Main.scene.player.life+50, 20);
         p.addPoint(50, 20);
 
         g.setColor(Color.red);

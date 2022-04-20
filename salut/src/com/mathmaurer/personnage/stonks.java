@@ -1,10 +1,12 @@
 package com.mathmaurer.personnage;
 
 import com.mathmaurer.jeu.Main;
+import com.mathmaurer.object.object;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.*;
+import java.util.ArrayList;
 
 public class stonks extends personnage implements Runnable {
 
@@ -14,6 +16,8 @@ public class stonks extends personnage implements Runnable {
 
     public Image imgMonster;
     public ImageIcon icoMonster;
+
+    public static ArrayList<stonks> list = new ArrayList<stonks>();
 
     public boolean droite;
 
@@ -31,6 +35,7 @@ public class stonks extends personnage implements Runnable {
                 }catch(InterruptedException e){
 
                 }
+
             }
             this.icoMonster = new ImageIcon("src/Image/champArretGauche.png");
             this.imgMonster = this.icoMonster.getImage();
@@ -44,6 +49,7 @@ public class stonks extends personnage implements Runnable {
                 }catch(InterruptedException e){
 
                 }
+
             }
         }
 
@@ -62,6 +68,8 @@ public class stonks extends personnage implements Runnable {
 
         droite = true;
 
+        list.add(this);
+
 
 
     }
@@ -69,6 +77,20 @@ public class stonks extends personnage implements Runnable {
 
     public void MOVE(int direction){
         this.x += direction;
+    }
+
+    public static void AttackAll()
+    {
+        if(Main.scene!=null)
+        {
+            for(int i = 0;i<list.size();i++)
+            {
+                if(list.get(i).x <= Main.scene.player.getX()+2 && list.get(i).x>= Main.scene.player.getX()-2 )
+                {
+                    Main.scene.player.life -= 10;
+                }
+            }
+        }
     }
 
 
