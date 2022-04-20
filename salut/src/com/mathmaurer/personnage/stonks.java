@@ -85,7 +85,7 @@ public class stonks extends personnage implements Runnable {
         {
             for(int i = 0;i<list.size();i++)
             {
-                if(list.get(i).x <= Main.scene.player.getX()+2 && list.get(i).x>= Main.scene.player.getX()-2 )
+                if(list.get(i).x <= Main.scene.player.getX()+8 && list.get(i).x>= Main.scene.player.getX()-8 )
                 {
                     Main.scene.player.life -= 10;
                 }

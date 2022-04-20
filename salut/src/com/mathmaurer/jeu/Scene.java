@@ -312,7 +312,7 @@ public class Scene extends JPanel implements ActionListener{
         }
 
         g.drawImage(monster.imgMonster,monster.x,this.monster.y,null);
-
+        CoinBar(g);
 
 
 
@@ -384,6 +384,18 @@ public class Scene extends JPanel implements ActionListener{
         deathquit.setForeground(Color.CYAN);
         reload.setBackground(Color.red);
         reload.setForeground(Color.CYAN);
+
+    }
+
+    public void CoinBar(Graphics g)
+    {
+        ImageIcon a =new ImageIcon(getClass().getResource("/image/piece1.png"));
+        Image b =a.getImage();
+        Font f = new Font("Agency FB",Font.BOLD,25);
+        g.setFont(f);
+        g.setColor(Color.black);
+        g.drawString(""+Main.scene.player.coincount,610,29);
+        g.drawImage(b,630,5,null);
 
     }
 
