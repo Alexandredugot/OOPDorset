@@ -60,6 +60,14 @@ public class Player extends personnage {
         }else if(this.getY() + this.getHeight() < com.mathmaurer.jeu.Main.scene.getySol()){this.setY(this.getY() + 1);
             if(this.isVersDroite() == true){str = "/Image/marioSautDroite.png";}
             else{str = "/Image/marioSautGauche.png";}
+            for(int i = 0;i<stonks.list.size();i++)
+            {
+                if(stonks.list.get(i).x <= Main.scene.player.getX()+8 && stonks.list.get(i).x>= Main.scene.player.getX()-8)
+                {
+                    stonks.list.get(i).life =0;
+
+                }
+            }
             // Saut terminé
         }else{
             if(this.isVersDroite() == true){str = "/Image/marioArretDroite.png";}
@@ -97,5 +105,17 @@ public class Player extends personnage {
             return true;
         }
         return false;
+    }
+
+    public void Attack()
+    {
+        for(int i = 0;i<stonks.list.size();i++)
+        {
+            if(stonks.list.get(i).x <= Main.scene.player.getX()+8 && stonks.list.get(i).x>= Main.scene.player.getX()-8)
+            {
+
+            }
+        }
+
     }
 }
