@@ -312,7 +312,7 @@ public class Scene extends JPanel implements ActionListener{
 
         }
 
-        g.drawImage(monster.imgMonster,monster.x,this.monster.y,null);
+        g.drawImage(monster.MOVE("champ",30),monster.x,this.monster.y,null);
         CoinBar(g);
 
 
