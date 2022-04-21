@@ -27,6 +27,12 @@ public class Scene extends JPanel implements ActionListener{
     private ImageIcon icoDepart;
     private Image imgDepart;
 
+
+    private ImageIcon icoendflag;
+    private Image endflagimg;
+    private int xflag;
+
+
     private int xFond1;
     private int xFond2;
 
@@ -111,6 +117,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xdepart = 220;
         this.xCube = 400;
 
+        this.xflag=4650;
 
         this.ySol = 293;
         this.HauteurPlafond = 0;
@@ -138,6 +145,9 @@ public class Scene extends JPanel implements ActionListener{
 
         this.icoDepart = new ImageIcon(getClass().getResource("/Image/depart.png"));
         this.imgDepart = this.icoDepart.getImage();
+
+        this.icoendflag = new ImageIcon(getClass().getResource("/Image/drapeau.png"));
+        this.endflagimg = this.icoendflag.getImage();
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -202,6 +212,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xFond2 = this.xFond2 - this.dx;
         this.monster.x = this.monster.x -this.dx;
 
+        this.xflag-=this.dx;
 
         if(this.xFond1 == -800)
         {
@@ -254,6 +265,7 @@ public class Scene extends JPanel implements ActionListener{
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
+        g2.drawImage(endflagimg,xflag,115,null);
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             object objet= com.mathmaurer.object.object.list.get(i);
@@ -261,12 +273,6 @@ public class Scene extends JPanel implements ActionListener{
             g2.drawImage(objet.getObjimg(), objet.getX(), objet.getY(), null);
 
         }
-        /*
-        for(int i=0;i<this.CoinArr.size();i++){
-            g2.drawImage( this.CoinArr.get(i).pictchange(), this.CoinArr.get(i).getX(), this.CoinArr.get(i).getY(),null);
-        }*/
-
-
 
         if(ispause && first == false){
             PauseMenu();
@@ -284,6 +290,7 @@ public class Scene extends JPanel implements ActionListener{
             KillScreen(g);
             dead = false;
         }
+        
         if(dead == false)
         {
             deathquit.setBounds(280,180,100,50);
@@ -296,10 +303,6 @@ public class Scene extends JPanel implements ActionListener{
 
         g.drawImage(monster.MOVE("champ",30),monster.x,this.monster.y,null);
         CoinBar(g);
-
-
-
-
     }
 
     @Override
@@ -316,7 +319,6 @@ public class Scene extends JPanel implements ActionListener{
             deathquit.setVisible(false);
             reload.setVisible(false);
         }
-
     }
 
     public void PauseMenu() {
@@ -382,8 +384,5 @@ public class Scene extends JPanel implements ActionListener{
         g.drawImage(b,630,5,null);
 
     }
-
-
-
 
 }
