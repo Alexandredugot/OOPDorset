@@ -30,6 +30,10 @@ public class Scene extends JPanel implements ActionListener{
     private int xFond1;
     private int xFond2;
 
+    private ImageIcon icoendflag;
+    private Image endflagimg;
+    private int xflag;
+
     private int xPos;
     private int ySol;
     private int HauteurPlafond;
@@ -110,7 +114,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xcastle = 10;
         this.xdepart = 220;
         this.xCube = 400;
-
+        this.xflag=4650;
 
         this.ySol = 293;
         this.HauteurPlafond = 0;
@@ -138,6 +142,9 @@ public class Scene extends JPanel implements ActionListener{
 
         this.icoDepart = new ImageIcon(getClass().getResource("/Image/depart.png"));
         this.imgDepart = this.icoDepart.getImage();
+
+        this.icoendflag = new ImageIcon(getClass().getResource("/Image/drapeau.png"));
+        this.endflagimg = this.icoendflag.getImage();
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -201,6 +208,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xFond1 = this.xFond1 - this.dx;
         this.xFond2 = this.xFond2 - this.dx;
         this.monster.x = this.monster.x -this.dx;
+        this.xflag-=this.dx;
 
 
         if(this.xFond1 == -800)
@@ -255,7 +263,7 @@ public class Scene extends JPanel implements ActionListener{
 
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
-
+        g2.drawImage(endflagimg,xflag,115,null);
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             object objet= com.mathmaurer.object.object.list.get(i);
             objet.MoveOject(i);
