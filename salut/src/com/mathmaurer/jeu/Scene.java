@@ -100,6 +100,7 @@ public class Scene extends JPanel implements ActionListener{
     public JButton reload;
 
     public com.mathmaurer.personnage.stonks monster;
+    public com.mathmaurer.personnage.stonks monster2;
 
     public Scene(){
         super();
@@ -176,6 +177,8 @@ public class Scene extends JPanel implements ActionListener{
         blocL= new bloc(4300,210);*/
         Thread a = new Thread(monster = new stonks(400,264));
         a.start();
+        Thread c = new Thread(monster2 = new stonks(650,264));
+        c.start();
         Thread b = new Thread(new damage());
         b.start();
         Thread chronoEcran = new Thread(new Chrono());
@@ -208,6 +211,7 @@ public class Scene extends JPanel implements ActionListener{
         this.xFond1 = this.xFond1 - this.dx;
         this.xFond2 = this.xFond2 - this.dx;
         this.monster.x = this.monster.x -this.dx;
+        this.monster2.x = this.monster2.x -this.dx;
         this.xflag-=this.dx;
 
 
@@ -302,27 +306,31 @@ public class Scene extends JPanel implements ActionListener{
             g.drawString(death,Main.scene.getWidth()/2 -170  ,Main.scene.getHeight()/2 -100);
 
         }
-        if(monster.life>0){
+        for(int i =0;i<stonks.list.size();i++)
+        {
+            if(stonks.list.get(i).life>0){
 
-            g.drawImage(monster.MOVE("champ",30),monster.x,this.monster.y,null);
-        }
-        else{
-            for(int i = 0;i<stonks.list.size();i++)
-            {
-                if(stonks.list.get(i).direction>0)
-                {
-                    stonks.list.get(i).icoMonster = new ImageIcon("src/Image/champEcraseDroite.png");
-                    stonks.list.get(i).imgMonster = stonks.list.get(i).icoMonster.getImage();
-                }
-                else
-                {
-                    stonks.list.get(i).icoMonster = new ImageIcon("src/Image/champEcraseGauche.png");
-                    stonks.list.get(i).imgMonster = stonks.list.get(i).icoMonster.getImage();
-                }
-                g.drawImage(stonks.list.get(i).imgMonster,monster.x,this.monster.y+20,null);
+                g.drawImage(stonks.list.get(i).MOVE("champ",30),stonks.list.get(i).x,stonks.list.get(i).y,null);
             }
+            else{
+                for(int j = 0;j<stonks.list.size();j++)
+                {
+                    if(stonks.list.get(j).direction>0)
+                    {
+                        stonks.list.get(j).icoMonster = new ImageIcon("src/Image/champEcraseDroite.png");
+                        stonks.list.get(j).imgMonster = stonks.list.get(j).icoMonster.getImage();
+                    }
+                    else
+                    {
+                        stonks.list.get(j).icoMonster = new ImageIcon("src/Image/champEcraseGauche.png");
+                        stonks.list.get(j).imgMonster = stonks.list.get(j).icoMonster.getImage();
+                    }
+                    g.drawImage(stonks.list.get(j).imgMonster,stonks.list.get(i).x,stonks.list.get(i).y+20,null);
+                }
 
+            }
         }
+
         CoinBar(g);
 
 

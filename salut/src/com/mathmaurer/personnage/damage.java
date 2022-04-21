@@ -8,7 +8,7 @@ public class damage implements Runnable {
             stonks.AttackAll();
 
             try{
-                Thread.sleep(60);
+                Thread.sleep(40);
             }catch(InterruptedException e){
 
             }
