@@ -166,20 +166,7 @@ public class Scene extends JPanel implements ActionListener{
         blocI= new bloc(3550,140);
         blocJ = new bloc(4000,200);
         blocK= new bloc(4200,200);
-        blocL= new bloc(4300,210);
-
-        objlist = new ArrayList<Object>();
-        this.objlist.add(this.blocA);
-        this.objlist.add(this.blocB);
-        this.objlist.add(this.blocC);
-        this.objlist.add(this.blocD);
-        this.objlist.add(this.blocE);
-        this.objlist.add(this.blocF);
-        this.objlist.add(this.blocG);
-        this.objlist.add(this.blocI);
-        this.objlist.add(this.blocJ);
-        this.objlist.add(this.blocK);
-        this.objlist.add(this.blocL);*/
+        blocL= new bloc(4300,210);*/
         Thread a = new Thread(monster = new stonks(400,264));
         a.start();
         Thread b = new Thread(new damage());
@@ -241,6 +228,9 @@ public class Scene extends JPanel implements ActionListener{
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             object objet= com.mathmaurer.object.object.list.get(i);
+            if(objet.getClass()==Coin.class){
+                ((Coin) objet).setObjimg(((Coin) objet).pictchange());
+            }
             if(player.close(objet)){
 
                 if(objet.getClass()!=Coin.class){
@@ -266,18 +256,10 @@ public class Scene extends JPanel implements ActionListener{
         g2.drawImage(imgDepart,xdepart,234,null);
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
-
-
-
             object objet= com.mathmaurer.object.object.list.get(i);
             objet.MoveOject(i);
             g2.drawImage(objet.getObjimg(), objet.getX(), objet.getY(), null);
 
-
-
-            /*com.mathmaurer.object.object.list.get(i).MoveOject(i);
-            g2.drawImage(com.mathmaurer.object.object.list.get(i).getObjimg(),com.mathmaurer.object.object.list.get(i).getX(),com.mathmaurer.object.object.list.get(i).getY(),null);
-            if(player.close(object))*/
         }
         /*
         for(int i=0;i<this.CoinArr.size();i++){
