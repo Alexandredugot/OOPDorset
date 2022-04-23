@@ -15,6 +15,8 @@ public class Player extends personnage {
     private int compteurSaut;
     public int coincount;
 
+    public int finishedlevel;
+
     public Player(int x,int y){
         super(x,y,28,50,100,10,3);
         this.icoPlayer = new ImageIcon("src/Image/marioArretDroite.png");
@@ -23,6 +25,7 @@ public class Player extends personnage {
         this.saut = false;
         this.compteurSaut =0;
         this.coincount=0;
+        this.finishedlevel=0;
     }
 
     public Image getImgPlayer(){return imgPlayer;}
@@ -65,7 +68,6 @@ public class Player extends personnage {
                 if(stonks.list.get(i).x <= Main.scene.player.getX()+8 && stonks.list.get(i).x>= Main.scene.player.getX()-8)
                 {
                     stonks.list.get(i).life =0;
-
                 }
             }
             // Saut terminé

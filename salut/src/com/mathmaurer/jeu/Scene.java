@@ -34,6 +34,10 @@ public class Scene extends JPanel implements ActionListener{
     private Image endflagimg;
     private int xflag;
 
+    private  object castlend;
+    private ImageIcon endcasticon;
+    private  Image endcast;
+
     private int xPos;
     private int ySol;
     private int HauteurPlafond;
@@ -88,6 +92,7 @@ public class Scene extends JPanel implements ActionListener{
     public Pipe redpipe7 = new Pipe(3800,230);
     public Pipe redpipe8 = new Pipe(4500,230);
 
+
     Polygon p = new Polygon();
     String death = new String();
 
@@ -99,6 +104,7 @@ public class Scene extends JPanel implements ActionListener{
     public JButton deathquit;
     public JButton reload;
 
+    public JButton quitbutton;
     public com.mathmaurer.personnage.stonks monster;
     public com.mathmaurer.personnage.stonks monster2;
 
@@ -122,12 +128,6 @@ public class Scene extends JPanel implements ActionListener{
 
 
         player = new Player(300,245);
-        blocA= new bloc(400,180);
-        blocB=new bloc(1200,180);
-        blocC= new bloc(1270,170);
-        blocD = new bloc(1340,160);
-        blocE = new bloc(2000,180);
-        bloc grg = new bloc(100,150);
 
 
 
@@ -162,7 +162,14 @@ public class Scene extends JPanel implements ActionListener{
         this.CoinArr.add(coinH);
         this.CoinArr.add(coinI);
         this.CoinArr.add(coinJ);
-/*
+
+
+        castlend = new object(5000,145,100,100);
+         endcasticon = new ImageIcon(getClass().getResource("/Image/chateauFin.png"));
+        endcast = endcasticon.getImage();
+        castlend.setObjicon(endcasticon);
+        castlend.setObjimg(endcast);
+
         blocA= new bloc(400,180);
         blocB=new bloc(1200,180);
         blocC= new bloc(1270,170);
@@ -174,7 +181,7 @@ public class Scene extends JPanel implements ActionListener{
         blocI= new bloc(3550,140);
         blocJ = new bloc(4000,200);
         blocK= new bloc(4200,200);
-        blocL= new bloc(4300,210);*/
+        blocL= new bloc(4300,210);
         Thread a = new Thread(monster = new stonks(400,264));
         a.start();
         Thread c = new Thread(monster2 = new stonks(650,264));
@@ -268,6 +275,8 @@ public class Scene extends JPanel implements ActionListener{
         g2.drawImage(imgcastle,xcastle,95,null);
         g2.drawImage(imgDepart,xdepart,234,null);
         g2.drawImage(endflagimg,xflag,115,null);
+
+
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
             object objet= com.mathmaurer.object.object.list.get(i);
             objet.MoveOject(i);
@@ -333,7 +342,10 @@ public class Scene extends JPanel implements ActionListener{
 
         CoinBar(g);
 
-
+        if(player.getX()>=xflag){
+            player.finishedlevel=1;
+            Winscreen(g);
+        }
 
 
     }
@@ -407,6 +419,30 @@ public class Scene extends JPanel implements ActionListener{
 
     }
 
+    public void Winscreen(Graphics g){
+        p = new Polygon();
+        p.addPoint(Main.fenetre.getWidth()/2+100, Main.fenetre.getHeight()/2+50);
+        p.addPoint(Main.fenetre.getWidth()/2+100, Main.fenetre.getHeight()/2-50);
+        p.addPoint(Main.fenetre.getWidth()/2-100, Main.fenetre.getHeight()/2-50);
+        p.addPoint(Main.fenetre.getWidth()/2-100, Main.fenetre.getHeight()/2+50);
+        g.setColor(Color.orange);
+        g.fillPolygon(p);
+        g.drawPolygon(p);
+        g.setColor(Color.black);
+        Font f = new Font("Agency FB",Font.BOLD,25);
+        g.setFont(f);
+        g.drawString("finished",Main.fenetre.getWidth()/2-25,Main.fenetre.getHeight()/2);
+        /*  quitbutton = new JButton();
+        quitbutton.setBounds(280,100,100,50);
+        Font f = new Font("Agency FB",Font.BOLD,35);
+        g.setFont(f);
+            this.add(quitbutton);
+            quitbutton.addActionListener(this);
+            quitbutton.setText("You won ! quit ?");
+            quitbutton.setFocusable(false);
+        quitbutton.setForeground(Color.CYAN);
+        quitbutton.setBackground(Color.red);*/
+    }
     public void CoinBar(Graphics g)
     {
         ImageIcon a =new ImageIcon(getClass().getResource("/image/piece1.png"));
