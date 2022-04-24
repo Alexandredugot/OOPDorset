@@ -16,12 +16,13 @@ public class Player extends personnage {
     public int coincount;
 
     public int finishedlevel;
+    public int l;
 
     public Player(int x,int y){
         super(x,y,28,50,100,10,3);
         this.icoPlayer = new ImageIcon("src/Image/marioArretDroite.png");
         this.imgPlayer = this.icoPlayer.getImage();
-
+        l=40;
         this.saut = false;
         this.compteurSaut =0;
         this.coincount=0;
@@ -54,7 +55,7 @@ public class Player extends personnage {
 
         this.compteurSaut++;
         // Montée du saut
-        if(this.compteurSaut <= 40){
+        if(this.compteurSaut <= l){
             if(this.getY() > com.mathmaurer.jeu.Main.scene.getHauteurPlafond()){this.setY(this.getY() - 4);}
             else{this.compteurSaut = 41;}
             if(this.isVersDroite() == true){str = "/Image/marioSautDroite.png";}

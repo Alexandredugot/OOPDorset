@@ -27,6 +27,10 @@ public class Scene extends JPanel implements ActionListener{
     private ImageIcon icoDepart;
     private Image imgDepart;
 
+    public int xd = 2200;
+
+    public shop Shop;
+
     private int xFond1;
     private int xFond2;
 
@@ -46,6 +50,8 @@ public class Scene extends JPanel implements ActionListener{
     private int xcastle;
     private int xdepart;
 
+    public boolean h = true;
+
     private int dx;
     private int jumpForce;
 
@@ -64,6 +70,8 @@ public class Scene extends JPanel implements ActionListener{
     public bloc blocK;
     public bloc blocL;
     private ArrayList<Object> objlist;
+
+    public boolean j;
 
     public JButton button;
     public boolean ispause;
@@ -104,18 +112,29 @@ public class Scene extends JPanel implements ActionListener{
     public JButton deathquit;
     public JButton reload;
 
+    public JButton shoplife;
+    public JButton shopspeed;
+
     public JButton quitbutton;
     public com.mathmaurer.personnage.stonks monster;
     public com.mathmaurer.personnage.stonks monster2;
+    public com.mathmaurer.personnage.stonks monster3;
+    public com.mathmaurer.personnage.stonks monster4;
+    public com.mathmaurer.personnage.stonks monster5;
+    public com.mathmaurer.personnage.stonks monster6;
+    public com.mathmaurer.personnage.stonks monster7;
+
+    public boolean m;
 
     public Scene(){
         super();
-
         death = "Only losers see this screen!";
         a=true;
         life = false;
         ispause = false;
         first = false;
+        j=true;
+        m=true;
         this.xFond1 = -50;
         this.xFond2 = 750;
         this.xcastle = 10;
@@ -186,6 +205,16 @@ public class Scene extends JPanel implements ActionListener{
         a.start();
         Thread c = new Thread(monster2 = new stonks(650,264));
         c.start();
+        Thread c2 = new Thread(monster3 = new stonks(1200,264));
+        c2.start();
+        Thread c3 = new Thread(monster4 = new stonks(1700,264));
+        c3.start();
+        Thread c4 = new Thread(monster5 = new stonks(2600,264));
+        c4.start();
+        Thread c5 = new Thread(monster6 = new stonks(3000,264));
+        c5.start();
+        Thread c6 = new Thread(monster7 = new stonks(3500,264));
+        c6.start();
         Thread b = new Thread(new damage());
         b.start();
         Thread chronoEcran = new Thread(new Chrono());
@@ -219,7 +248,14 @@ public class Scene extends JPanel implements ActionListener{
         this.xFond2 = this.xFond2 - this.dx;
         this.monster.x = this.monster.x -this.dx;
         this.monster2.x = this.monster2.x -this.dx;
+        this.monster3.x = this.monster3.x -this.dx;
+        this.monster4.x = this.monster4.x -this.dx;
+        this.monster5.x = this.monster5.x -this.dx;
+        this.monster6.x-=this.dx;
+        this.monster7.x-=this.dx;
         this.xflag-=this.dx;
+        this.xd = this.xd - this.dx;
+        Shop.x = Shop.x - this.dx;
 
 
         if(this.xFond1 == -800)
@@ -243,6 +279,13 @@ public class Scene extends JPanel implements ActionListener{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+
+        if(h){
+            Shop = new shop(200,145);
+        }
+        ShopStructure(g);
+
+
         Graphics g2 = (Graphics2D)g;
 
         for(int i =0;i<com.mathmaurer.object.object.list.size();i++){
@@ -262,7 +305,6 @@ public class Scene extends JPanel implements ActionListener{
                 }
             }
         }
-        this.Movefond();
         Main.menu.button.setBounds(Main.fenetre.getWidth()/2 -100,Main.fenetre.getHeight()/2 -50,200,50);
         g2.drawImage(this.imgfond1,this.xFond1,0,null);
         g2.drawImage(this.imgfond2,this.xFond2,0,null);
@@ -347,6 +389,31 @@ public class Scene extends JPanel implements ActionListener{
             Winscreen(g);
         }
 
+        if(h){
+            Shop = new shop(2200,145);
+            h = false;
+        }
+        ShopStructure(g);
+
+        this.Movefond();
+
+        if(Main.scene.player.getX() > xd-65 && Main.scene.player.getX() < xd +65){
+            ShopInterface(g);
+            if(shoplife !=null && shopspeed != null){
+                shopspeed.setBounds(xd-75,115,70,30);
+                shoplife.setBounds(xd+50,115,70,30);
+            }
+        }
+        else if(!(Main.scene.player.getX() > xd-15 && Main.scene.player.getX() < xd +50) && m==false){
+            m=true;
+            shopspeed.remove(shopspeed);
+            shoplife.remove(shoplife);
+            shoplife.setVisible(false);
+            shopspeed.setVisible(false);
+        }
+
+
+
 
     }
 
@@ -363,6 +430,15 @@ public class Scene extends JPanel implements ActionListener{
             dead =true;
             deathquit.setVisible(false);
             reload.setVisible(false);
+        }
+        else if(e.getSource()==shoplife && Main.scene.player.coincount>=1){
+            Main.scene.player.life +=10;
+            Main.scene.player.coincount -=1;
+        }
+        else if(e.getSource()==shopspeed && Main.scene.player.coincount>=1 && j){
+            player.l = 60;
+            Main.scene.player.coincount -=1;
+            j=false;
         }
 
     }
@@ -455,6 +531,68 @@ public class Scene extends JPanel implements ActionListener{
 
     }
 
+    public void ShopStructure(Graphics g){
+        ImageIcon a =new ImageIcon(getClass().getResource("/image/drapeau.png"));
+        Image b =a.getImage();
+        Font f = new Font("Agency FB",Font.BOLD,50);
+        g.setFont(f);
+        g.setColor(Color.red);
+        g.drawString("SHOP",xd-80,95);
+        g.drawImage(b,xd-75,Shop.y-30,null);
+
+    }
+
+    public void ShopInterface(Graphics g){
+        g.setColor(Color.ORANGE);
+        g.fillRect(xd-100,50,250,150);
+        g.drawRect(xd-100,50,250,150);
+        g.setColor(Color.black);
+        g.drawRect(xd-100,50,250,150);
+        Font f = new Font("Agency FB",Font.BOLD,25);
+        g.setFont(f);
+        g.drawString("SHOP",xd-90,75);
+        g.setColor(Color.white);
+        g.drawString("+1 JUMP",xd-75,100);
+        g.drawString("+10 LP",xd+50,100);
+
+        if(m){
+            shoplife = new JButton();
+            shoplife.setBounds(xd-70,115,70,30);
+            this.add(shoplife);
+            shoplife.addActionListener(this);
+            shoplife.setText("BUY");
+            shoplife.setFocusable(false);
+            shoplife.setBackground(Color.CYAN);
+            shoplife.setForeground(Color.red);
+
+            shopspeed = new JButton();
+            shopspeed.setBounds(xd-135,115,70,30);
+            this.add(shopspeed);
+            shopspeed.addActionListener(this);
+            shopspeed.setText("BUY");
+            shopspeed.setFocusable(false);
+            shopspeed.setBackground(Color.CYAN);
+            shopspeed.setForeground(Color.red);
+        }
+        m=false;
+
+        ImageIcon a =new ImageIcon(getClass().getResource("/image/piece1.png"));
+        Image b =a.getImage();
+        Font f2 = new Font("Agency FB",Font.BOLD,20);
+        g.setFont(f2);
+        g.setColor(Color.black);
+        g.drawString("1",xd-30,170);
+        g.drawImage(b,xd-60,150,null);
+
+        ImageIcon h =new ImageIcon(getClass().getResource("/image/piece1.png"));
+        Image h2 =a.getImage();
+        Font f3 = new Font("Agency FB",Font.BOLD,20);
+        g.setFont(f3);
+        g.setColor(Color.black);
+        g.drawString("1",xd+100,170);
+        g.drawImage(h2,xd+70,150,null);
+
+    }
 
 
 

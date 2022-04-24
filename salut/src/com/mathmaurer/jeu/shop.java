@@ -14,10 +14,15 @@ public class shop implements Runnable {
     public ImageIcon iconshop;
     public Image imgshop;
 
+    public boolean isShop = false;
+
     public void run(){
-        if(Main.scene.player.getX() > this.x && Main.scene.player.getX() < this.x +70)
+        if(Main.scene.player.getX() > this.x && Main.scene.player.getX() < this.x +20)
         {
-            
+            isShop = true;
+        }
+        else{
+            isShop = false;
         }
     }
 
@@ -27,6 +32,12 @@ public class shop implements Runnable {
 
         iconshop=new ImageIcon(getClass().getResource("/image/shop2.jpg"));
         imgshop=iconshop.getImage();
+
+
+
+        Thread s = new Thread(Main.scene.Shop);
+        s.start();
+
     }
 
     public void addSell(type t,int price){
